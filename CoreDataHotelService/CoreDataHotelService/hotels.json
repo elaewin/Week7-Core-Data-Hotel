@@ -6,29 +6,29 @@
                 "stars" : 4,
                 "rooms" : [
                 {
-                           "number" : 401,
+                           "roomNumber" : 401,
                            "beds" : 2,
                            "rate" : 4
                 },
                 {
-                           "number" : 402,
+                           "roomNumber" : 402,
                            "beds" : 2,
                            "rate" : 4
                 },
                 {
-                           "number" : 403,
-                           "beds" : 2,
-                           "rate" : 4
-                },
-                
-                {
-                           "number" : 404,
+                           "roomNumber" : 403,
                            "beds" : 2,
                            "rate" : 4
                 },
                 
                 {
-                           "number" : 405,
+                           "roomNumber" : 404,
+                           "beds" : 2,
+                           "rate" : 4
+                },
+                
+                {
+                           "roomNumber" : 405,
                            "beds" : 2,
                            "rate" : 4
                 }
@@ -40,29 +40,29 @@
                 "stars" : 3,
                 "rooms" : [
                            {
-                           "number" : 301,
+                           "roomNumber" : 301,
                            "beds" : 2,
                            "rate" : 3
                            },
                            {
-                           "number" : 302,
+                           "roomNumber" : 302,
                            "beds" : 2,
                            "rate" : 3
                            },
                            {
-                           "number" : 303,
-                           "beds" : 2,
-                           "rate" : 3
-                           },
-                           
-                           {
-                           "number" : 304,
+                           "roomNumber" : 303,
                            "beds" : 2,
                            "rate" : 3
                            },
                            
                            {
-                           "number" : 305,
+                           "roomNumber" : 304,
+                           "beds" : 2,
+                           "rate" : 3
+                           },
+                           
+                           {
+                           "roomNumber" : 305,
                            "beds" : 2,
                            "rate" : 3
                            }
@@ -74,29 +74,29 @@
                 "stars" : 3,
                 "rooms" : [
                            {
-                           "number" : 201,
+                           "roomNumber" : 201,
                            "beds" : 2,
                            "rate" : 2
                            },
                            {
-                           "number" : 202,
+                           "roomNumber" : 202,
                            "beds" : 2,
                            "rate" : 2
                            },
                            {
-                           "number" : 203,
-                           "beds" : 2,
-                           "rate" : 2
-                           },
-                           
-                           {
-                           "number" : 204,
+                           "roomNumber" : 203,
                            "beds" : 2,
                            "rate" : 2
                            },
                            
                            {
-                           "number" : 205,
+                           "roomNumber" : 204,
+                           "beds" : 2,
+                           "rate" : 2
+                           },
+                           
+                           {
+                           "roomNumber" : 205,
                            "beds" : 2,
                            "rate" : 2
                            }
@@ -108,29 +108,29 @@
                 "stars" : 1,
                 "rooms" : [
                            {
-                           "number" : 101,
+                           "roomNumber" : 101,
                            "beds" : 2,
                            "rate" : 1
                            },
                            {
-                           "number" : 102,
+                           "roomNumber" : 102,
                            "beds" : 2,
                            "rate" : 1
                            },
                            {
-                           "number" : 103,
-                           "beds" : 2,
-                           "rate" : 1
-                           },
-                           
-                           {
-                           "number" : 104,
+                           "roomNumber" : 103,
                            "beds" : 2,
                            "rate" : 1
                            },
                            
                            {
-                           "number" : 105,
+                           "roomNumber" : 104,
+                           "beds" : 2,
+                           "rate" : 1
+                           },
+                           
+                           {
+                           "roomNumber" : 105,
                            "beds" : 2,
                            "rate" : 2
                            }

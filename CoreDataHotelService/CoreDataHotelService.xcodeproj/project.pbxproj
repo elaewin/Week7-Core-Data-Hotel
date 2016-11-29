@@ -18,6 +18,7 @@
 		554AF1901DECD97A00AC6899 /* hotels.json in Resources */ = {isa = PBXBuildFile; fileRef = 554AF18D1DECD97A00AC6899 /* hotels.json */; };
 		554AF1911DECD97A00AC6899 /* room.png in Resources */ = {isa = PBXBuildFile; fileRef = 554AF18E1DECD97A00AC6899 /* room.png */; };
 		554AF1941DECEEF000AC6899 /* HotelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554AF1931DECEEF000AC6899 /* HotelsViewController.m */; };
+		554AF1971DED0C5B00AC6899 /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554AF1961DED0C5B00AC6899 /* RoomsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		554AF18E1DECD97A00AC6899 /* room.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = room.png; sourceTree = "<group>"; };
 		554AF1921DECEEF000AC6899 /* HotelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelsViewController.h; sourceTree = "<group>"; };
 		554AF1931DECEEF000AC6899 /* HotelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelsViewController.m; sourceTree = "<group>"; };
+		554AF1951DED0C5B00AC6899 /* RoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomsViewController.h; sourceTree = "<group>"; };
+		554AF1961DED0C5B00AC6899 /* RoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 			children = (
 				554AF1721DEC9D8800AC6899 /* ViewController.h */,
 				554AF1731DEC9D8800AC6899 /* ViewController.m */,
+				554AF1951DED0C5B00AC6899 /* RoomsViewController.h */,
+				554AF1961DED0C5B00AC6899 /* RoomsViewController.m */,
 				554AF1921DECEEF000AC6899 /* HotelsViewController.h */,
 				554AF1931DECEEF000AC6899 /* HotelsViewController.m */,
 			);
@@ -200,6 +205,7 @@
 				554AF1711DEC9D8800AC6899 /* AppDelegate.m in Sources */,
 				554AF16E1DEC9D8800AC6899 /* main.m in Sources */,
 				554AF1941DECEEF000AC6899 /* HotelsViewController.m in Sources */,
+				554AF1971DED0C5B00AC6899 /* RoomsViewController.m in Sources */,
 				554AF17A1DEC9D8800AC6899 /* CoreDataHotelService.xcdatamodeld in Sources */,
 				554AF1891DECA30300AC6899 /* AutoLayout.m in Sources */,
 			);
@@ -352,6 +358,7 @@
 				554AF1851DEC9D8800AC6899 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
