@@ -71,6 +71,23 @@
     return cell;
 }
 
+#pragma mark - Delegate Methods
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIImageView *roomsHeaderView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"room"]];
+    roomsHeaderView.contentMode = UIViewContentModeScaleAspectFill;
+    roomsHeaderView.clipsToBounds = YES;
+    return roomsHeaderView;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 128.0;
+    
+}
+
 /*
 #pragma mark - Navigation
 

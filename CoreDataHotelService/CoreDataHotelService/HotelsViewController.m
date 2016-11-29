@@ -106,17 +106,20 @@
     
 }
 
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//
-//    // stuff here
-//    
-//}
-//
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    
-//    // stuff here
-//    
-//}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    UIImageView *hotelHeaderView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"hotel"]];
+    hotelHeaderView.contentMode = UIViewContentModeScaleAspectFill;
+    hotelHeaderView.clipsToBounds = YES;
+    return hotelHeaderView;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 128.0;
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
