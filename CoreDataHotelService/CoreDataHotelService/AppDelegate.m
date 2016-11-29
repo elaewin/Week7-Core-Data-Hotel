@@ -79,25 +79,27 @@
         
         hotels = rootObject[@"Hotels"];
         
-        for(NSDictionary *hotel in hotels) {
+        for(NSDictionary *hotel in hotels){
+            
             Hotel *newHotel = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.persistentContainer.viewContext];
             
             newHotel.name = hotel[@"name"];
             newHotel.location = hotel[@"location"];
-            newHotel.stars = (NSInteger)hotel[@"stars"];
+            newHotel.stars = [hotel[@"stars"] intValue];
             
             rooms = hotel[@"rooms"];
             
             for (NSDictionary *room in rooms) {
                 Room *newRoom = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.persistentContainer.viewContext];
                 
-                newRoom.roomNumber = (NSInteger)room[@"roomNumber"];
-                newRoom.beds = (NSInteger)room[@"beds"];
+                NSLog(@"%@", [room[@"beds"] class]);
+                
+                newRoom.roomNumber = [room[@"roomNumber"] intValue];
+                newRoom.beds = [room[@"beds"] intValue];
                 newRoom.rate = (NSDecimalNumber *)room[@"rate"];
                 
                 newRoom.hotel = newHotel;
             }
-            
         }
         
         NSError *saveError;
