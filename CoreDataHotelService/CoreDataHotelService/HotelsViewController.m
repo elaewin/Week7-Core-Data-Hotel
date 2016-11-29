@@ -11,6 +11,9 @@
 #import "AppDelegate.h"
 #import "Hotel+CoreDataClass.h"
 
+#import "RoomsViewController.h"
+#import "Room+CoreDataClass.h"
+
 @interface HotelsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic)NSArray *dataSource;
@@ -91,9 +94,29 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //finish this for homework
+    RoomsViewController *roomsVC = [[RoomsViewController alloc]init];
+    
+    Hotel *selectedHotel = self.dataSource[indexPath.row];
+    
+    roomsVC.hotel = selectedHotel;
+    
+    NSLog(@"%@ selected from hotel list.", selectedHotel.name);
+    
+    [self.navigationController pushViewController:roomsVC animated:YES];
     
 }
+
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//
+//    // stuff here
+//    
+//}
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    
+//    // stuff here
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
