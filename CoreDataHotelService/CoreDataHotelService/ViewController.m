@@ -30,9 +30,9 @@
 
 -(void)setupCustomLayout {
     
-    CGFloat navigationBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
+    CGFloat navigationBarHeight = (CGRectGetHeight(self.navigationController.navigationBar.frame)) + 20;
     
-    CGFloat buttonHeight = (self.view.frame.size.height - navigationBarHeight - 20) / 3;
+    CGFloat buttonHeight = (self.view.frame.size.height - navigationBarHeight) / 3;
     
     // Buttons
     UIButton *browseButton = [self createButtonWithTitle:@"Browse" andBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:0.76 alpha:1.0]];
@@ -46,7 +46,7 @@
     NSDictionary *metricsDictionary = @{@"navHeightPadding": [NSNumber numberWithFloat:navigationBarHeight], @"buttonHeight":  [NSNumber numberWithFloat:buttonHeight]};
     
     [AutoLayout createConstraintsWithVFLFor:viewDictionary
-                      withMetricsDictionary:metricsDictionary withFormat:@"V:|-navHeightPadding-[browseButton(==buttonHeight)][bookButton(==browseButton)][lookupButton(==browseButton)]|"];
+                      withMetricsDictionary:metricsDictionary withFormat:@"V:|-navHeightPadding-[browseButton(==buttonHeight)][bookButton(==buttonHeight)][lookupButton(==buttonHeight)]|"];
     
     [AutoLayout createLeadingConstraintFrom:browseButton toView:self.view];
     [AutoLayout createTrailingConstraintFrom:browseButton toView:self.view];
