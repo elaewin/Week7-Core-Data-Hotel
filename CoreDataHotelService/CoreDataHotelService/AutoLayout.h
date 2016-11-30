@@ -7,6 +7,7 @@
 //
 
 @import UIKit;
+#import "UIViewController+AutoLayoutConstants.h"
 
 @interface AutoLayout : NSObject
 

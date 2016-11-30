@@ -54,13 +54,13 @@
     return constraints;
 }
 
-// create constraints with VFL (not full screen), viewDictionary should include the views that are going to be used in the VFL string.
+// create constraints with VFL (not full screen), views is a dictionary of the views that are going to be used in the VFL string.
 
-+(NSArray *)createConstraintsWithVFLFor:(NSDictionary *)viewDictionary withMetricsDictionary:(NSDictionary *)metrics withFormat:(NSString *)constraintFormat{
++(NSArray *)createConstraintsWithVFLFor:(NSDictionary *)views withMetricsDictionary:(NSDictionary *)metrics withFormat:(NSString *)constraintFormat{
     
     NSArray *constraints = [[NSArray alloc]init];
         
-    NSArray *newConstraint = [NSLayoutConstraint constraintsWithVisualFormat:constraintFormat options:0 metrics:metrics views:viewDictionary];
+    NSArray *newConstraint = [NSLayoutConstraint constraintsWithVisualFormat:constraintFormat options:0 metrics:metrics views:views];
     
     constraints = [constraints arrayByAddingObjectsFromArray:newConstraint];
     

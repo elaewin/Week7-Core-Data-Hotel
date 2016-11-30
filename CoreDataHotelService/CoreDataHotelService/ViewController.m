@@ -10,6 +10,7 @@
 #import "AutoLayout.h"
 #import "HotelsViewController.h"
 #import "Hotel+CoreDataClass.h"
+#import "DatePickerViewController.h"
 
 @interface ViewController ()
 
@@ -30,9 +31,9 @@
 
 -(void)setupCustomLayout {
     
-    CGFloat navigationBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
+    CGFloat navAndStatusBarHeight = [self navBarHeight] + [self statusBarHeight];
     
-    CGFloat buttonHeight = (self.view.frame.size.height - navigationBarHeight - 20) / 3;
+    CGFloat buttonHeight = (self.view.frame.size.height - navAndStatusBarHeight) / 3;
     
     // Buttons
     UIButton *browseButton = [self createButtonWithTitle:@"Browse" andBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:0.76 alpha:1.0]];
@@ -43,7 +44,7 @@
     
     NSDictionary *viewDictionary = @{@"browseButton": browseButton, @"bookButton": bookButton, @"lookupButton": lookupButton};
     
-    NSDictionary *metricsDictionary = @{@"navHeightPadding": [NSNumber numberWithFloat:navigationBarHeight], @"buttonHeight":  [NSNumber numberWithFloat:buttonHeight]};
+    NSDictionary *metricsDictionary = @{@"navHeightPadding": [NSNumber numberWithFloat:navAndStatusBarHeight], @"buttonHeight":  [NSNumber numberWithFloat:buttonHeight]};
     
     [AutoLayout createConstraintsWithVFLFor:viewDictionary
                       withMetricsDictionary:metricsDictionary withFormat:@"V:|-navHeightPadding-[browseButton(==buttonHeight)][bookButton(==browseButton)][lookupButton(==browseButton)]|"];
@@ -60,6 +61,7 @@
     // set up action buttons programmatically
     [browseButton addTarget:self action:@selector(browseButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     
+    [bookButton addTarget:self action:@selector(bookButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)browseButtonSelected:(UIButton *)sender {
@@ -70,6 +72,15 @@
     
     NSLog(@"Browse button pressed.");
     
+}
+
+-(void)bookButtonSelected:(UIButton *)sender {
+    
+    DatePickerViewController *DatePickerVC = [[DatePickerViewController alloc]init];
+    
+    [self.navigationController pushViewController:DatePickerVC animated:YES];
+    
+    NSLog(@"Book button pressed.");
 }
 
 // button setup helper method (since we've got several)
@@ -88,17 +99,9 @@
     return button;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end

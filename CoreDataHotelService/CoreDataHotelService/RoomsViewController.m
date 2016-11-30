@@ -66,12 +66,21 @@
     
     Room *room = self.dataSource[indexPath.row];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Room %hd", room.roomNumber];
+    cell.textLabel.text = [NSString stringWithFormat:@"Room %hd (%hd beds - $%.2f per night)", room.roomNumber, room.beds, room.rate.floatValue];
     
     return cell;
 }
 
 #pragma mark - Delegate Methods
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Room *selectedRoom = self.dataSource[indexPath.row];
+    
+    NSLog(@"Room %hd selected", selectedRoom.roomNumber);
+    
+}
+
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
@@ -87,15 +96,5 @@
     return 128.0;
     
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
