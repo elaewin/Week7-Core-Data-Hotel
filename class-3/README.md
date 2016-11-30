@@ -3,7 +3,7 @@
 * Write 10 Tests for the AutoLayout class.
 * Implement NSFetchedResultsController in AvailabilityViewController.
 * Implement LookupViewController.
-	* Implement a UISearchBar to fetch reservations based on the predicateFormat:`@"guest.name == %@", searchText`.
+	* Implement a UISearchBar to fetch reservations based on the predicateFormat:`@"guest.name == %@", searchText`.(searchText represents the text entered in the UISearchBar)
 	* Implement a TableView to display the array of reservations returned from the fetch of reservations.
 * **Bonus:**
 	* Create a ReservationService, similar to our AutoLayout class, that should abstract away your business logic (booking reservations, checking availability, etc)
