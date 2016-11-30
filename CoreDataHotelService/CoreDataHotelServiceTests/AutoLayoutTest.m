@@ -16,6 +16,9 @@
 @property(strong, nonatomic)UIView *testView1;
 @property(strong, nonatomic)UIView *testView2;
 
+@property(strong, nonatomic) UIButton *button1;
+@property(strong, nonatomic) UIButton *button2;
+
 @end
 
 @implementation AutoLayoutTest
@@ -26,9 +29,13 @@
     self.testController = [[UIViewController alloc]init];
     self.testView1 = [[UIView alloc]init];
     self.testView2 = [[UIView alloc]init];
+    self.button1 = [[UIButton alloc]init];
+    self.button2 = [[UIButton alloc]init];
     
     [self.testController.view addSubview:self.testView1];
     [self.testController.view addSubview:self.testView2];
+    [self.testController.view addSubview:self.button1];
+    [self.testController.view addSubview:self.button2];
 }
 
 - (void)tearDown {
@@ -73,4 +80,28 @@
     XCTAssert(count == 0, @"Array contains %i objects that are not NSLayoutConstraints", count);
 }
 
+-(void)testCreateConstraintsWithVFL {
+    
+    NSDictionary *views = @{@"button1": self.button1, @"button2": self.button2};
+    
+    NSArray *constraints = [AutoLayout createConstraintsWithVFLFor:views withMetricsDictionary:nil withFormat:@"H:|-[button1]-[button2(==button1)-|"];
+    
+    for (id constraint in constraints) {
+        XCTAssert([constraint isKindOfClass:[NSLayoutConstraint class]], @"Array contains object that is not an NSLayoutConstraint.");
+    }
+}
+
+// Full Layout constraints without VFL (does the same as the above VFL method)
+//+(NSArray *)activateFullViewConstraintsFrom:(UIView *)view toView:(UIView *)superView{
+
 @end
+
+
+
+
+
+
+
+
+
+

@@ -6,23 +6,24 @@
 //  Copyright © 2016 Erica Winberry. All rights reserved.
 //
 
-#import "AppDelegate.h"
-#import "AutoLayout.h"
 #import "AvailabilityViewController.h"
 #import "BookViewController.h"
+#import "AppDelegate.h"
+#import "AutoLayout.h"
 #import "Reservation+CoreDataClass.h"
 #import "Room+CoreDataClass.h"
+#import "Hotel+CoreDataClass.h"
 
 @interface AvailabilityViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic) UITableView *tableView;
-@property(strong, nonatomic) NSArray *availableRooms;
+@property(strong, nonatomic) NSFetchedResultsController *availableRooms;
 
 @end
 
 @implementation AvailabilityViewController
 
--(NSArray *)availableRooms {
+-(NSFetchedResultsController *)availableRooms {
     
     // this is how you do lazy properties in Obj-C.
     if (!_availableRooms) {
@@ -35,9 +36,7 @@
         request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.startDate, self.endDate];
         
         NSError *requestError;
-    
         NSArray *results = [context executeFetchRequest:request error:&requestError];
-        
         if (requestError) {
             NSLog(@"Error with reservation fetch request.");
             return nil;
@@ -45,7 +44,6 @@
         
         // This is the array of rooms WITH reservations during the requested dates, so these rooms are unavailable!
         NSMutableArray *unavailableRooms = [[NSMutableArray alloc]init];
-        
         for (Reservation *reservation in results) {
             [unavailableRooms addObject:reservation.room];
         }
@@ -54,15 +52,20 @@
         NSFetchRequest *roomRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
         roomRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
         
-        NSError *roomRequestError;
+        // sort rooms by hotel, then sort by room number.
+        roomRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"hotel.name" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"roomNumber" ascending:YES]];
         
-        _availableRooms = [context executeFetchRequest:roomRequest error:&roomRequestError];
+        NSError *roomRequestError;
+
+        _availableRooms = [[NSFetchedResultsController alloc]initWithFetchRequest:roomRequest managedObjectContext:context sectionNameKeyPath:@"hotel.name" cacheName:nil];
+        
+        [_availableRooms performFetch:&roomRequestError];
         
         if (roomRequestError) {
             NSLog(@"There was an error requesting available rooms.");
         }
     
-        if (_availableRooms.count == 0) {
+        if (self.availableRooms.sections.count == 0) {
             UIAlertController *alertController = [UIAlertController
                                                   alertControllerWithTitle:@"Sorry"
                                                   message:@"No rooms are available for the dates you have selected."
@@ -79,11 +82,9 @@
             
             return nil;
         }
-    
     }
 
     return _availableRooms;
-
 }
 
 -(void)loadView {
@@ -117,7 +118,26 @@
 #pragma mark - Data Source Methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.availableRooms.count;
+    
+    // id here has to conform to the NSFetchedResultsSectionInfo protocol.
+    NSArray *sections = [self.availableRooms sections];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
+    
+    return [sectionInfo numberOfObjects];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.availableRooms.sections.count;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    NSArray *sections = [self.availableRooms sections];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
+    
+    Room *room = [[sectionInfo objects] objectAtIndex:section];
+    
+    return room.hotel.name;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,9 +148,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    Room *room = self.availableRooms[indexPath.row];
+    Room *room = [self.availableRooms objectAtIndexPath:indexPath];
     
-    // add hotel name (because room #'s might be the same)
     cell.textLabel.text = [NSString stringWithFormat:@"Room: %i (%i beds, $%.2f/night)", room.roomNumber, room.beds, room.rate.floatValue];
     
     return cell;
@@ -140,7 +159,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    Room *room = self.availableRooms[indexPath.row];
+    Room *room = [self.availableRooms objectAtIndexPath:indexPath];
     
     BookViewController *bookVC = [[BookViewController alloc]init];
     bookVC.room = room;

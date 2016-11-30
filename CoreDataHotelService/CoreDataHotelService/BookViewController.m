@@ -120,6 +120,18 @@
 -(void)saveButtonPressed: (UIBarButtonItem *)sender {
     
     // handle instances where textfield is empty (send alert that can't make a reservation without a name).
+    if ([self.firstNameField.text isEqual: @""] && [self.lastNameField.text isEqual: @""] && [self.emailField.text isEqual: @""]) {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops..." message:@"Please make sure that you have filled out all the fields before saving your reservation." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+        return;
+    }
 
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
