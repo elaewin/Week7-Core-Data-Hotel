@@ -58,11 +58,27 @@
         
         _availableRooms = [context executeFetchRequest:roomRequest error:&roomRequestError];
         
-        if(roomRequestError) {
+        if (roomRequestError) {
             NSLog(@"There was an error requesting available rooms.");
         }
     
-        // if count of available rooms is 0 (no reservations) alert the user.
+        if (_availableRooms.count == 0) {
+            UIAlertController *alertController = [UIAlertController
+                                                  alertControllerWithTitle:@"Sorry"
+                                                  message:@"No rooms are available for the dates you have selected."
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *selectNewAction = [UIAlertAction actionWithTitle:@"Pick New Dates" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+            [alertController addAction:selectNewAction];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+            return nil;
+        }
     
     }
 

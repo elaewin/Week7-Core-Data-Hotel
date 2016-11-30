@@ -91,7 +91,7 @@
     
     label.textAlignment = NSTextAlignmentCenter;
     
-    label.font = [UIFont systemFontOfSize:22.0];
+    label.font = [UIFont systemFontOfSize:22.0 weight:UIFontWeightSemibold];
 
     label.text = labelText;
     
