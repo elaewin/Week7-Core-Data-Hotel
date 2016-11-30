@@ -73,6 +73,15 @@
 
 #pragma mark - Delegate Methods
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Room *selectedRoom = self.dataSource[indexPath.row];
+    
+    NSLog(@"Room %hd selected", selectedRoom.roomNumber);
+    
+}
+
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIImageView *roomsHeaderView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"room"]];
@@ -87,15 +96,5 @@
     return 128.0;
     
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
