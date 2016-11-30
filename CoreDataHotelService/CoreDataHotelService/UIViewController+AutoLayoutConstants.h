@@ -13,4 +13,12 @@
 -(CGFloat)navBarHeight;
 -(CGFloat)statusBarHeight;
 
+//// MARK: Metrics Dictionary
+//-(CGFloat)margin;
+//-(CGFloat)buttonHeight;
+//-(CGFloat)topPadding;
+//
+//-(NSDictionary *)metricsDictionary;
+
+
 @end

@@ -18,4 +18,27 @@
     return 20;
 }
 
+//// MARK: Metrics Dictionary
+//
+//-(CGFloat)buttonHeight{
+//    
+//    return 20.0;
+//}
+//
+//-(CGFloat)margin{
+//    return 20.0;
+//}
+//
+//CGFloat *navAndStatusBarHeight = navBarHeight + statusBarHeight;
+//
+//-(CGFloat)topPadding{
+//    
+//    return 20.0;
+//}
+//
+//
+//-(NSDictionary *)metricsDictionary {
+//    NSDictionary *metrics = @{@"navHeightPadding": [NSNumber numberWithFloat:navAndStatusBarHeight], @"buttonHeight":  [NSNumber numberWithFloat:buttonHeight]};
+//    return metrics;
+//}
 @end
