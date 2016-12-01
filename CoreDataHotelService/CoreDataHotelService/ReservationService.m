@@ -55,7 +55,13 @@
 }
 
 // book a reservation
-+(BOOL)bookAReservationFor:(NSDate *)startDate through:(NSDate *)endDate atHotel:(Hotel *)hotel inRoom:(Room *)room withFirstName:(NSString *)firstName andLastName:(NSString *)lastName atEmail:(NSString *)email {
++(BOOL)bookAReservationFor:(NSDate *)startDate
+                   through:(NSDate *)endDate
+                   atHotel:(Hotel *)hotel
+                    inRoom:(Room *)room
+             withFirstName:(NSString *)firstName
+               andLastName:(NSString *)lastName
+                   atEmail:(NSString *)email {
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
