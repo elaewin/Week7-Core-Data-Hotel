@@ -34,9 +34,13 @@
     [self setTitle:@"Reservations"];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
+    // get rid of extra space at top of tableView (might be from NavController)
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     [self setupTableView];
     [self setupSearchBar];
     [self setupLayout];
+    
 }
 
 - (void)viewDidLoad {
@@ -189,7 +193,7 @@
 #pragma mark - Search Bar Delegate Methods
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    if(searchText > 0) {        
+    if([searchText length] > 0) {
         if (![searchText isValid]) {
             searchBar.text = [searchText substringToIndex:([searchText length] - 1)];
         } else {

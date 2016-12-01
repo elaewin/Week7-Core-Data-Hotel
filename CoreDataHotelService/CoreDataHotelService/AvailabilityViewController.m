@@ -48,6 +48,7 @@
         for (Reservation *reservation in results) {
             [unavailableRooms addObject:reservation.room];
         }
+        NSLog(@"unavailable rooms: %lu", (unsigned long)unavailableRooms.count);
         
         // Now get all of the rooms that are not already reserved.
         NSFetchRequest *roomRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
