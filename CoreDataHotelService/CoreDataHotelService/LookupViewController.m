@@ -6,6 +6,8 @@
 //  Copyright © 2016 Erica Winberry. All rights reserved.
 //
 
+#import <Flurry.h>
+
 #import "LookupViewController.h"
 #import "Hotel+CoreDataClass.h"
 #import "Room+CoreDataClass.h"
@@ -45,6 +47,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [Flurry logEvent:@"Timed_User_Search" timed:YES];
     // Do any additional setup after loading the view.
 }
 
@@ -73,6 +77,7 @@
     
     if(requestError) {
         NSLog(@"Error fetching reservations for guest %@", self.searchBar.text);
+        return nil;
     }
     
     if (self.reservations.sections.count == 0) {
@@ -86,6 +91,9 @@
     }
     
     NSLog(@"Number of sections: %lu", self.reservations.sections.count);
+    
+    [Flurry logEvent:@"User_Searched_Reservations"];
+    [Flurry endTimedEvent:@"Timed_User_Search" withParameters:nil];
     
     return _reservations;
 }
@@ -111,6 +119,9 @@
     self.searchBar.delegate = self;
     
     [self.searchBar setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    self.searchBar.placeholder = @"Enter your email to search for reservations.";
+    
     [self.view addSubview:self.searchBar];
 }
 

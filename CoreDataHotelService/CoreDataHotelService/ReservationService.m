@@ -6,6 +6,7 @@
 //  Copyright © 2016 Erica Winberry. All rights reserved.
 //
 
+#import <Flurry.h>
 #import "ReservationService.h"
 
 @implementation ReservationService
@@ -90,6 +91,8 @@
         return false;
     } else {
         NSLog(@"Saved reservation successfully.");
+        NSDictionary *parameters = @{@"Guest":reservation.guest.objectID};
+        [Flurry logEvent:@"Reservation_Booked" withParameters:parameters];
     }
     return true;
 }
