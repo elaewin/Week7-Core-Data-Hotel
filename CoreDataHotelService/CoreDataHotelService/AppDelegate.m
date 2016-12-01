@@ -6,11 +6,14 @@
 //  Copyright © 2016 Erica Winberry. All rights reserved.
 //
 
+#import <Flurry.h>
+#import "Constants.h"
 #import "AppDelegate.h"
 #import "ViewController.h"
 
 #import "Hotel+CoreDataClass.h"
 #import "Room+CoreDataClass.h"
+
 
 @interface AppDelegate ()
 
@@ -26,6 +29,10 @@
 
     [self setupRootViewController];
     [self bootstrapApp];
+    
+    [Flurry startSession:flurryAPIKey];
+    
+    [Flurry logEvent:@"App_Opened"];
     
     return YES;
 }

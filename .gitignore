@@ -151,3 +151,6 @@ Pods/
 iOSInjectionProject/
 
 ### Objective-C Patch ###
+
+# File with protected info
+Constants.h

@@ -6,6 +6,8 @@
 //  Copyright © 2016 Erica Winberry. All rights reserved.
 //
 
+#import <Flurry.h>
+
 #import "BookViewController.h"
 
 #import "AppDelegate.h"
