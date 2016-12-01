@@ -20,5 +20,7 @@
 //
 //-(NSDictionary *)metricsDictionary;
 
+// Date formatter
+-(NSString *)getReadableDatefor:(NSDate *)date withFormat:(NSDateFormatterStyle)format;
 
 @end

@@ -41,4 +41,16 @@
 //    NSDictionary *metrics = @{@"navHeightPadding": [NSNumber numberWithFloat:navAndStatusBarHeight], @"buttonHeight":  [NSNumber numberWithFloat:buttonHeight]};
 //    return metrics;
 //}
+
+// Date formatter
+-(NSString *)getReadableDatefor:(NSDate *)date withFormat:(NSDateFormatterStyle)format {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = format;
+    dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    return [dateFormatter stringFromDate:date];
+}
 @end

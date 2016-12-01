@@ -10,6 +10,7 @@
 
 @interface ViewController : UIViewController
 
+//-(UIButton *)createButtonWithTitle:(NSString *)title andBackgroundColor:(UIColor *)color;
 
 @end
 

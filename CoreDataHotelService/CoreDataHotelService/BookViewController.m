@@ -65,8 +65,8 @@
                          self.room.roomNumber,
                          self.room.beds,
                          self.room.rate.floatValue,
-                         [self getReadableDatefor: self.startDate],
-                         [self getReadableDatefor: self.endDate]
+                         [self getReadableDatefor:self.startDate withFormat:NSDateFormatterLongStyle],
+                         [self getReadableDatefor:self.endDate withFormat:NSDateFormatterLongStyle]
                          ];
 }
 
@@ -160,17 +160,6 @@
         NSLog(@"Saved reservation successfully.");
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
-}
-
--(NSString *)getReadableDatefor:(NSDate *)date {
-
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = NSDateFormatterFullStyle;
-    dateFormatter.timeStyle = NSDateFormatterNoStyle;
-    
-    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-
-    return [dateFormatter stringFromDate:date];
 }
 
 @end

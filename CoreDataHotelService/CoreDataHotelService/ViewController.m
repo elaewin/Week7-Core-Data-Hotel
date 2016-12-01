@@ -11,6 +11,7 @@
 #import "HotelsViewController.h"
 #import "Hotel+CoreDataClass.h"
 #import "DatePickerViewController.h"
+#import "LookupViewController.h"
 
 @interface ViewController ()
 
@@ -62,6 +63,9 @@
     [browseButton addTarget:self action:@selector(browseButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     
     [bookButton addTarget:self action:@selector(bookButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+
+    [lookupButton addTarget:self action:@selector(lookupButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 -(void)browseButtonSelected:(UIButton *)sender {
@@ -81,6 +85,15 @@
     [self.navigationController pushViewController:DatePickerVC animated:YES];
     
     NSLog(@"Book button pressed.");
+}
+
+-(void)lookupButtonSelected:(UIButton *)sender {
+    
+    LookupViewController *lookupVC = [[LookupViewController alloc]init];
+    
+    [self.navigationController pushViewController:lookupVC animated:YES];
+    
+    NSLog(@"Lookup button pressed");
 }
 
 // button setup helper method (since we've got several)

@@ -35,5 +35,4 @@
 +(NSLayoutConstraint *)createEqualHeightConstraintFrom:(UIView *)view toView:(UIView *)otherView withMultiplier:(CGFloat)multiplier;
 
 
-
 @end

@@ -80,19 +80,58 @@
     XCTAssert(count == 0, @"Array contains %i objects that are not NSLayoutConstraints", count);
 }
 
--(void)testCreateConstraintsWithVFL {
+-(void)testCreateConstraintsWithVFLReturnsConstraintsArray {
     
     NSDictionary *views = @{@"button1": self.button1, @"button2": self.button2};
     
-    NSArray *constraints = [AutoLayout createConstraintsWithVFLFor:views withMetricsDictionary:nil withFormat:@"H:|-[button1]-[button2(==button1)-|"];
+    int count = 0;
+    
+    NSArray *constraints = [AutoLayout createConstraintsWithVFLFor:views withMetricsDictionary:nil withFormat:@"H:|-10-[button1]-[button2(==button1)]-10-|"];
     
     for (id constraint in constraints) {
-        XCTAssert([constraint isKindOfClass:[NSLayoutConstraint class]], @"Array contains object that is not an NSLayoutConstraint.");
+        if (![constraint isKindOfClass:[NSLayoutConstraint class]]) {
+            count++;
+        }
     }
+    XCTAssert(count == 0, @"Array contains object that is not an NSLayoutConstraint.");
 }
 
 // Full Layout constraints without VFL (does the same as the above VFL method)
-//+(NSArray *)activateFullViewConstraintsFrom:(UIView *)view toView:(UIView *)superView{
+
+-(void)testActivateFullViewConstraintsWithoutVFLReturnsConstraintsArray {
+    
+    NSArray *constraints = [AutoLayout activateFullViewConstraintsFrom:self.testView1 toView:self.testController.view];
+    
+    int count = 0;
+    
+    for (id constraint in constraints) {
+        if (![constraint isMemberOfClass:[NSLayoutConstraint class]]) {
+            count++;
+        }
+    }
+    XCTAssertEqual(count, 0, @"Array contains object that is not an NSLayoutConstraint.");
+}
+
+-(void)testCreateSingleConstraintMethodsReturnConstraint {
+    NSLayoutConstraint *leading = [AutoLayout createLeadingConstraintFrom:self.testView1 toView:self.testController.view];
+    NSLayoutConstraint *trailing = [AutoLayout createTrailingConstraintFrom:self.testView1 toView:self.testController.view];
+    NSLayoutConstraint *equalHeights = [AutoLayout createEqualHeightConstraintFrom:self.testView1 toView:self.testController.view];
+    NSLayoutConstraint *equalWithMultiplier = [AutoLayout createEqualHeightConstraintFrom:self.testView1 toView:self.testController.view withMultiplier:1.5];
+    
+    XCTAssert([leading isKindOfClass:[NSLayoutConstraint class]], @"Attempt to set leading constraint does NOT return an NSLayoutConstraint.");
+    XCTAssert([trailing isKindOfClass:[NSLayoutConstraint class]], @"Attempt to set trailing constraint does NOT return an NSLayoutConstraint.");
+    XCTAssert([equalHeights isKindOfClass:[NSLayoutConstraint class]], @"Attempt to set equal heights constraint does NOT return an NSLayoutConstraint.");
+    XCTAssert([equalWithMultiplier isKindOfClass:[NSLayoutConstraint class]], @"Attempt to set equal heights constraint (with multiplier) does NOT return an NSLayoutConstraint.");
+}
+
+
+-(void)testCreateEqualHeightConstraintWithMultiplierAtOne {
+    NSLayoutConstraint *withMultiplierAt1 = [AutoLayout createEqualHeightConstraintFrom:self.testView1 toView:self.testController.view withMultiplier:1.0];
+    
+    NSLayoutConstraint *withoutMultiplier = [AutoLayout createEqualHeightConstraintFrom:self.testView1 toView:self.testController.view];
+    
+    XCTAssertEqual([withMultiplierAt1 multiplier], [withoutMultiplier multiplier], @"Constraints do NOT have the same multiplier!");
+}
 
 @end
 
