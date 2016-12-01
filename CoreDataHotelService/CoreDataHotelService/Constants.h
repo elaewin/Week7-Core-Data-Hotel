@@ -9,5 +9,6 @@
 #ifndef Constants_h
 #define Constants_h
 
+NSString *flurryAPIKey = @"GWRY72SYRXJWWYQ74HXQ";
 
 #endif /* Constants_h */

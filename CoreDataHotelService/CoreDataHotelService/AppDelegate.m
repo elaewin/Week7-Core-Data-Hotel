@@ -7,6 +7,7 @@
 //
 
 #import <Flurry.h>
+#import "Constants.h"
 #import "AppDelegate.h"
 #import "ViewController.h"
 
@@ -29,7 +30,7 @@
     [self setupRootViewController];
     [self bootstrapApp];
     
-    [Flurry startSession:@""];
+    [Flurry startSession:flurryAPIKey];
     
     [Flurry logEvent:@"App_Opened"];
     
