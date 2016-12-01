@@ -114,7 +114,7 @@
     NSDate *startDate = self.startPicker.date;
     NSDate *endDate = self.endPicker.date;
     
-    if([startDate timeIntervalSinceReferenceDate] > [endDate timeIntervalSinceReferenceDate]) {
+    if([startDate  timeIntervalSinceReferenceDate] >= [endDate timeIntervalSinceReferenceDate]) {
         
         UIAlertController *alertController = [UIAlertController
                                               alertControllerWithTitle:@"Oops...!"
