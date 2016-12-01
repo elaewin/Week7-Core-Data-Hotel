@@ -31,24 +31,11 @@
 -(void)loadView {
     [super loadView];
     
-    self.tableView = [[UITableView alloc]init];
-    self.searchBar = [[UISearchBar alloc]init];
-    
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    self.searchBar.delegate = self;
-    
-    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.searchBar setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    [self.view addSubview:self.tableView];
-    [self.view addSubview:self.searchBar];
-    
     [self setTitle:@"Reservations"];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-
+    [self setupTableView];
+    [self setupSearchBar];
     [self setupLayout];
 }
 
@@ -98,6 +85,30 @@
     return _reservations;
 }
 
+-(void)setupTableView {
+    self.tableView = [[UITableView alloc]init];
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    self.tableView.estimatedRowHeight = 100;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self.view addSubview:self.tableView];
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+}
+
+-(void)setupSearchBar {
+    
+    self.searchBar = [[UISearchBar alloc]init];
+    self.searchBar.delegate = self;
+    
+    [self.searchBar setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:self.searchBar];
+}
+
 -(void)setupLayout {
     
     CGFloat navAndStatusBarHeight = [self navBarHeight] + [self statusBarHeight];
@@ -106,7 +117,9 @@
     
     NSDictionary *metrics = @{@"navAndStatusBarHeight": [NSNumber numberWithFloat: navAndStatusBarHeight]};
     
-    [AutoLayout createConstraintsWithVFLFor:views withMetricsDictionary:metrics withFormat:@"V:|-navAndStatusBarHeight-[searchBar]-[tableView]|"];
+    [AutoLayout createConstraintsWithVFLFor:views
+                      withMetricsDictionary:metrics
+                                 withFormat:@"V:|-navAndStatusBarHeight-[searchBar][tableView]|"];
     
     [AutoLayout createLeadingConstraintFrom:self.searchBar toView:self.view];
     [AutoLayout createTrailingConstraintFrom:self.searchBar toView:self.view];
@@ -146,18 +159,22 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
     
     Reservation *reservation = [self.reservations objectAtIndexPath:indexPath];
     
     cell.textLabel.text = [NSString stringWithFormat:@"Reservation At: %@\nBegins: %@\nEnds: %@\nRoom: %i (%i beds)\nCost Per Night: $%.2f",
-                           reservation.room.hotel,
+                           reservation.room.hotel.name,
                            [self getReadableDatefor:reservation.startDate withFormat:NSDateFormatterMediumStyle],
                            [self getReadableDatefor:reservation.endDate withFormat:NSDateFormatterMediumStyle],
                            reservation.room.roomNumber,
                            reservation.room.beds,
                            reservation.room.rate.floatValue];
+    
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
     
     return cell;
 }
@@ -165,7 +182,7 @@
 #pragma mark - TableView Delegate Methods
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 0;
+    return 100;
 }
 
 #pragma mark - Search Bar Delegate Methods
