@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "AutoLayout.h"
+#import "ReservationService.h"
 
 #import "Hotel+CoreDataClass.h"
 #import "Reservation+CoreDataClass.h"
@@ -117,6 +118,7 @@
     return textField;
 }
 
+// move implementation of booking a room to ReservationService
 -(void)saveButtonPressed: (UIBarButtonItem *)sender {
     
     // handle instances where textfield is empty (send alert that can't make a reservation without a name).
@@ -133,33 +135,13 @@
         return;
     }
 
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    
-    Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:context];
-    
-    reservation.startDate = self.startDate;
-    reservation.endDate = self.endDate;
-    reservation.room = self.room;
-    
-    self.room.reservations = [self.room.reservations setByAddingObject:reservation];
-    
-    reservation.guest = [NSEntityDescription insertNewObjectForEntityForName:@"Guest" inManagedObjectContext:context];
-    
-    reservation.guest.firstName = self.firstNameField.text;
-    reservation.guest.lastName = self.lastNameField.text;
-    reservation.guest.email = self.emailField.text;
-    
-    NSError *saveError;
-    
-    [context save:&saveError];
-    
-    if (saveError) {
-        NSLog(@"Error saving new reservation.");
-    } else {
-        NSLog(@"Saved reservation successfully.");
+    if ([ReservationService bookAReservationFor:self.startDate through:self.endDate atHotel:self.room.hotel inRoom:self.room withFirstName:self.firstNameField.text andLastName:self.lastNameField.text atEmail:self.emailField.text]) {
+        
         [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        // let the user know it didn't work.
     }
+    
 }
 
 @end

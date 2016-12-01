@@ -23,6 +23,7 @@
 
 @implementation AvailabilityViewController
 
+// move implementation in this method to ReservationService
 -(NSFetchedResultsController *)availableRooms {
     
     // this is how you do lazy properties in Obj-C.

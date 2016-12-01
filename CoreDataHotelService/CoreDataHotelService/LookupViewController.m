@@ -50,6 +50,7 @@
     [self.tableView reloadData];
 }
 
+// Move implementation of checking reservations to ReservationService
 -(NSFetchedResultsController *)getReservations {
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
