@@ -144,10 +144,10 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    NSArray *sections = [self.reservations sections];
-    id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
-    
-    Reservation *reservation = [[sectionInfo objects] objectAtIndex:section];
+//    NSArray *sections = [self.reservations sections];
+//    id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
+//    
+//    Reservation *reservation = [[sectionInfo objects] objectAtIndex:section];
     
 //    NSString *header = (@"Reservations for %@\n%@ %@", [reservation.guest email], [reservation.guest firstName], [reservation.guest lastName]);
     
