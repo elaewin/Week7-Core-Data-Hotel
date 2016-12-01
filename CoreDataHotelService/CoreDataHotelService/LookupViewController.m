@@ -75,7 +75,7 @@
     
     NSError *requestError;
     
-    _reservations = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:@"reservation.guest.email" cacheName:nil];
+    _reservations = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:@"guest.email" cacheName:nil];
     
     [_reservations performFetch:&requestError];
     
@@ -92,6 +92,8 @@
         
         [self presentViewController:noReservationsAlert animated:YES completion:nil];
     }
+    
+    NSLog(@"Number of sections: %lu", self.reservations.sections.count);
     
     return _reservations;
 }
@@ -123,6 +125,7 @@
     NSArray *sections = [self.reservations sections];
     id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
     
+    NSLog(@"Should be %lu rows in the section.", (unsigned long)[sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
 }
 
@@ -131,9 +134,11 @@
     NSArray *sections = [self.reservations sections];
     id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
     
-    Room *room = [[sectionInfo objects] objectAtIndex:section];
+    Reservation *reservation = [[sectionInfo objects] objectAtIndex:section];
     
-    return room.hotel.name;
+//    NSString *header = (@"Reservations for %@\n%@ %@", [reservation.guest email], [reservation.guest firstName], [reservation.guest lastName]);
+    
+    return @"Your Reservations";
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -186,7 +191,7 @@
     }
     
     [self getReservations];
-    
+    [self.tableView reloadData];
     
     [self.searchBar resignFirstResponder];
 }
