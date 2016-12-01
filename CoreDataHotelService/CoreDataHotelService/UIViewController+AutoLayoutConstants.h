@@ -13,4 +13,14 @@
 -(CGFloat)navBarHeight;
 -(CGFloat)statusBarHeight;
 
+//// MARK: Metrics Dictionary
+//-(CGFloat)margin;
+//-(CGFloat)buttonHeight;
+//-(CGFloat)topPadding;
+//
+//-(NSDictionary *)metricsDictionary;
+
+// Date formatter
+-(NSString *)getReadableDatefor:(NSDate *)date withFormat:(NSDateFormatterStyle)format;
+
 @end

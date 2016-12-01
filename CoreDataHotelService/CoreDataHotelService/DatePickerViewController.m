@@ -66,10 +66,6 @@
     [AutoLayout createTrailingConstraintFrom:self.endLabel toView:self.view];
     [AutoLayout createLeadingConstraintFrom:self.endLabel toView:self.view];
     
-//    [AutoLayout createGenericConstraintFrom:self.startLabel toView:self.view withAttribute:NSLayoutAttributeCenterY];
-//    
-//    [AutoLayout createGenericConstraintFrom:self.endLabel toView:self.view withAttribute:NSLayoutAttributeCenterY];
-    
     NSDictionary *viewDictionary = @{
                                      @"startPicker": self.startPicker,
                                      @"endPicker": self.endPicker,

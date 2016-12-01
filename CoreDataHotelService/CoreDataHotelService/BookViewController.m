@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "AutoLayout.h"
+#import "ReservationService.h"
 
 #import "Hotel+CoreDataClass.h"
 #import "Reservation+CoreDataClass.h"
@@ -65,8 +66,8 @@
                          self.room.roomNumber,
                          self.room.beds,
                          self.room.rate.floatValue,
-                         [self getReadableDatefor: self.startDate],
-                         [self getReadableDatefor: self.endDate]
+                         [self getReadableDatefor:self.startDate withFormat:NSDateFormatterLongStyle],
+                         [self getReadableDatefor:self.endDate withFormat:NSDateFormatterLongStyle]
                          ];
 }
 
@@ -117,48 +118,30 @@
     return textField;
 }
 
+// move implementation of booking a room to ReservationService
 -(void)saveButtonPressed: (UIBarButtonItem *)sender {
     
     // handle instances where textfield is empty (send alert that can't make a reservation without a name).
-
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    
-    Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:context];
-    
-    reservation.startDate = self.startDate;
-    reservation.endDate = self.endDate;
-    reservation.room = self.room;
-    
-    self.room.reservations = [self.room.reservations setByAddingObject:reservation];
-    
-    reservation.guest = [NSEntityDescription insertNewObjectForEntityForName:@"Guest" inManagedObjectContext:context];
-    
-    reservation.guest.firstName = self.firstNameField.text;
-    reservation.guest.lastName = self.lastNameField.text;
-    reservation.guest.email = self.emailField.text;
-    
-    NSError *saveError;
-    
-    [context save:&saveError];
-    
-    if (saveError) {
-        NSLog(@"Error saving new reservation.");
-    } else {
-        NSLog(@"Saved reservation successfully.");
-        [self.navigationController popToRootViewControllerAnimated:YES];
+    if ([self.firstNameField.text isEqual: @""] && [self.lastNameField.text isEqual: @""] && [self.emailField.text isEqual: @""]) {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops..." message:@"Please make sure that you have filled out all the fields before saving your reservation." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+        return;
     }
-}
 
--(NSString *)getReadableDatefor:(NSDate *)date {
-
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = NSDateFormatterFullStyle;
-    dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    if ([ReservationService bookAReservationFor:self.startDate through:self.endDate atHotel:self.room.hotel inRoom:self.room withFirstName:self.firstNameField.text andLastName:self.lastNameField.text atEmail:self.emailField.text]) {
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        // let the user know it didn't work.
+    }
     
-    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-
-    return [dateFormatter stringFromDate:date];
 }
 
 @end
