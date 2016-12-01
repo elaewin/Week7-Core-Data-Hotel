@@ -190,8 +190,7 @@
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if(searchText > 0) {        
         if (![searchText isValid]) {
-            NSUInteger lastIndex = [searchText characterAtIndex:([searchText length] - 1)];
-            searchBar.text = [searchText substringToIndex:lastIndex];
+            searchBar.text = [searchText substringToIndex:([searchText length] - 1)];
         } else {
             [searchBar setShowsSearchResultsButton:YES];
         }
