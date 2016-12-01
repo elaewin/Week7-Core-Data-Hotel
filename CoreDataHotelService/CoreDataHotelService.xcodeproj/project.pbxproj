@@ -50,6 +50,7 @@
 		3E0462794177D214FB563B0D /* Pods-CoreDataHotelService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataHotelService.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataHotelService/Pods-CoreDataHotelService.release.xcconfig"; sourceTree = "<group>"; };
 		552BE9EF1DF0CA9D00DE9E3D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		552BE9F11DF0CAA400DE9E3D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		552BE9F71DF0D7C100DE9E3D /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		554AF1691DEC9D8800AC6899 /* CoreDataHotelService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataHotelService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		554AF16D1DEC9D8800AC6899 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		554AF16F1DEC9D8800AC6899 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 		554AF16C1DEC9D8800AC6899 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				552BE9F71DF0D7C100DE9E3D /* Constants.h */,
 				55E8E17F1DEF9E8E0079B126 /* NSString+RegexStringValidation.h */,
 				55E8E1801DEF9E8E0079B126 /* NSString+RegexStringValidation.m */,
 				554AF16F1DEC9D8800AC6899 /* AppDelegate.h */,
