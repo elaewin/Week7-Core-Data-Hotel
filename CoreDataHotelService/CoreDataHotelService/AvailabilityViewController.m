@@ -34,7 +34,7 @@
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
         
         // Have to get all of the rooms with reservations FIRST.
-        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.startDate, self.endDate];
+        request.predicate = [NSPredicate predicateWithFormat:@"%@ <= endDate AND %@ >= startDate", self.startDate, self.endDate];
         
         NSError *requestError;
         NSArray *results = [context executeFetchRequest:request error:&requestError];

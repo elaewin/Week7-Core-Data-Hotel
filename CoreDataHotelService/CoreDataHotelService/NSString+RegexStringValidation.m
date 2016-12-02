@@ -12,7 +12,7 @@
 
 -(BOOL)isValid {
     
-    NSString *regexPattern = @"[^0-9a-z@_-\\.]";
+    NSString *regexPattern = @"[^0-9a-z@_\\-\\.]";
     
     NSError *regexError;
     

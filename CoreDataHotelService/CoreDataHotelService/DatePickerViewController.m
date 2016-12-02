@@ -114,6 +114,7 @@
     NSDate *startDate = self.startPicker.date;
     NSDate *endDate = self.endPicker.date;
     
+    // handle end dates before start dates in pickers
     if([startDate  timeIntervalSinceReferenceDate] >= [endDate timeIntervalSinceReferenceDate]) {
         
         UIAlertController *alertController = [UIAlertController
@@ -129,6 +130,35 @@
             self.endPicker.date = self.startPicker.date;
             
         }];
+        
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+        return;
+    }
+    
+    // handle equal end and start dates - must have at least a one night stay
+    
+    if([self getReadableDatefor:self.startPicker.date withFormat:NSDateFormatterShortStyle] == [self getReadableDatefor:self.endPicker.date withFormat:NSDateFormatterShortStyle]) {
+        
+        NSDateComponents *components = [[NSDateComponents alloc]init];
+        components.day = 1;
+        NSDate *datePlusOne = [[NSCalendar currentCalendar] dateByAddingComponents: components toDate:self.endPicker.date options: NSCalendarMatchNextTime];
+        
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Same-day Reservations Not Allowed"
+                                              message:@"You can only make reservations for one night or more."
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * _Nonnull action) {
+                                       
+                                       self.endPicker.date = datePlusOne;
+                                       
+                                   }];
         
         [alertController addAction:okAction];
         

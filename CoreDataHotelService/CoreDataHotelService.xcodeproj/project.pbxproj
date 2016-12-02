@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		552BE9F01DF0CA9D00DE9E3D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552BE9EF1DF0CA9D00DE9E3D /* SystemConfiguration.framework */; };
 		552BE9F21DF0CAA400DE9E3D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552BE9F11DF0CAA400DE9E3D /* Security.framework */; };
+		552BE9FA1DF0F28300DE9E3D /* ReservationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 552BE9F91DF0F28300DE9E3D /* ReservationTableViewCell.m */; };
 		554AF16E1DEC9D8800AC6899 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 554AF16D1DEC9D8800AC6899 /* main.m */; };
 		554AF1711DEC9D8800AC6899 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 554AF1701DEC9D8800AC6899 /* AppDelegate.m */; };
 		554AF1741DEC9D8800AC6899 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554AF1731DEC9D8800AC6899 /* ViewController.m */; };
@@ -51,6 +52,8 @@
 		552BE9EF1DF0CA9D00DE9E3D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		552BE9F11DF0CAA400DE9E3D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		552BE9F71DF0D7C100DE9E3D /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		552BE9F81DF0F28300DE9E3D /* ReservationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationTableViewCell.h; sourceTree = "<group>"; };
+		552BE9F91DF0F28300DE9E3D /* ReservationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationTableViewCell.m; sourceTree = "<group>"; };
 		554AF1691DEC9D8800AC6899 /* CoreDataHotelService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataHotelService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		554AF16D1DEC9D8800AC6899 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		554AF16F1DEC9D8800AC6899 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 		554AF1861DECA2CF00AC6899 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				552BE9F81DF0F28300DE9E3D /* ReservationTableViewCell.h */,
+				552BE9F91DF0F28300DE9E3D /* ReservationTableViewCell.m */,
 				554AF1871DECA30300AC6899 /* AutoLayout.h */,
 				554AF1881DECA30300AC6899 /* AutoLayout.m */,
 			);
@@ -444,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552BE9FA1DF0F28300DE9E3D /* ReservationTableViewCell.m in Sources */,
 				554AF19A1DEDF72700AC6899 /* DatePickerViewController.m in Sources */,
 				554AF1741DEC9D8800AC6899 /* ViewController.m in Sources */,
 				554AF1711DEC9D8800AC6899 /* AppDelegate.m in Sources */,

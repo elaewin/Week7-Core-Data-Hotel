@@ -9,13 +9,17 @@
 #import <Flurry.h>
 
 #import "LookupViewController.h"
-#import "Hotel+CoreDataClass.h"
-#import "Room+CoreDataClass.h"
+#import "ReservationTableViewCell.h"
+
 #import "AppDelegate.h"
 #import "AutoLayout.h"
+
+#import "Hotel+CoreDataClass.h"
+#import "Room+CoreDataClass.h"
 #import "Guest+CoreDataClass.h"
 #import "Reservation+CoreDataClass.h"
 #import "Hotel+CoreDataClass.h"
+
 #import "NSString+RegexStringValidation.h"
 
 
@@ -110,7 +114,7 @@
     
     [self.view addSubview:self.tableView];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[ReservationTableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
 -(void)setupSearchBar {
@@ -159,38 +163,24 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-//    NSArray *sections = [self.reservations sections];
-//    id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
-//    
-//    Reservation *reservation = [[sectionInfo objects] objectAtIndex:section];
-    
-//    NSString *header = (@"Reservations for %@\n%@ %@", [reservation.guest email], [reservation.guest firstName], [reservation.guest lastName]);
-    
     return @"Your Reservations";
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    ReservationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-    }
+//    if (!cell) {
+//        cell = [[ReservationTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//    }
     
     Reservation *reservation = [self.reservations objectAtIndexPath:indexPath];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Reservation At: %@\nBegins: %@\nEnds: %@\nRoom: %i (%i beds)\nCost Per Night: $%.2f",
-                           reservation.room.hotel.name,
-                           [self getReadableDatefor:reservation.startDate withFormat:NSDateFormatterMediumStyle],
-                           [self getReadableDatefor:reservation.endDate withFormat:NSDateFormatterMediumStyle],
-                           reservation.room.roomNumber,
-                           reservation.room.beds,
-                           reservation.room.rate.floatValue];
+    cell.reservation = reservation;
     
-    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.textLabel.numberOfLines = 0;
-    cell.textLabel.font = [UIFont systemFontOfSize:17];
+//    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    cell.textLabel.numberOfLines = 0;
+//    cell.textLabel.font = [UIFont systemFontOfSize:17];
     
     return cell;
 }
@@ -215,7 +205,7 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
-    NSString *searchText = self.searchBar.text;
+    NSString *searchText = self.searchBar.text.lowercaseString;
     
     if ([searchText isEqual: @""]) {
         //put alert here if nothing in search bar?

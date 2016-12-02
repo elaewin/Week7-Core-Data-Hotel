@@ -80,7 +80,7 @@
     
     reservation.guest.firstName = firstName;
     reservation.guest.lastName = lastName;
-    reservation.guest.email = email;
+    reservation.guest.email = email.lowercaseString;
     
     NSError *saveError;
     
