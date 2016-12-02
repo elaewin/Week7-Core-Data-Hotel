@@ -45,7 +45,7 @@
 
 -(void)setupCell {
     
-    self.hotelLabel.text = [NSString stringWithFormat:@"Reservation At: %@", self.reservation.room.hotel.name];
+    self.hotelLabel.text = [NSString stringWithFormat:@"Reservation At: %@ - Located in %@", self.reservation.room.hotel.name, self.reservation.room.hotel.location];
     
     self.guestLabel.text = [NSString stringWithFormat:@"Booked by: %@ %@", self.reservation.guest.firstName, self.reservation.guest.lastName];
     
@@ -84,7 +84,7 @@
     
     [AutoLayout createConstraintsWithVFLFor:views
                       withMetricsDictionary:nil
-                                 withFormat:@"V:|-[hotelLabel]-[datesLabel]-[guestLabel]-[roomLabel]-|"];
+                                 withFormat:@"V:|-[hotelLabel]-16-[datesLabel]-16-[guestLabel]-16-[roomLabel]-|"];
     
     [AutoLayout createConstraintsWithVFLFor:views withMetricsDictionary:nil withFormat:@"H:|-[hotelLabel]-|"];
     [AutoLayout createConstraintsWithVFLFor:views withMetricsDictionary:nil withFormat:@"H:|-[datesLabel]-|"];

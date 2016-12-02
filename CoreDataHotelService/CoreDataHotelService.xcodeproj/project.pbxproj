@@ -54,6 +54,7 @@
 		552BE9F71DF0D7C100DE9E3D /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		552BE9F81DF0F28300DE9E3D /* ReservationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationTableViewCell.h; sourceTree = "<group>"; };
 		552BE9F91DF0F28300DE9E3D /* ReservationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationTableViewCell.m; sourceTree = "<group>"; };
+		552BE9FB1DF123F400DE9E3D /* CoreDataHotelService 1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataHotelService 1.1.xcdatamodel"; sourceTree = "<group>"; };
 		554AF1691DEC9D8800AC6899 /* CoreDataHotelService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataHotelService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		554AF16D1DEC9D8800AC6899 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		554AF16F1DEC9D8800AC6899 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -678,9 +679,10 @@
 		554AF1781DEC9D8800AC6899 /* CoreDataHotelService.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				552BE9FB1DF123F400DE9E3D /* CoreDataHotelService 1.1.xcdatamodel */,
 				554AF1791DEC9D8800AC6899 /* CoreDataHotelService.xcdatamodel */,
 			);
-			currentVersion = 554AF1791DEC9D8800AC6899 /* CoreDataHotelService.xcdatamodel */;
+			currentVersion = 552BE9FB1DF123F400DE9E3D /* CoreDataHotelService 1.1.xcdatamodel */;
 			path = CoreDataHotelService.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

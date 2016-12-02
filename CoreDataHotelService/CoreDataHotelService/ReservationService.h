@@ -16,7 +16,7 @@
 @interface ReservationService : NSObject
 
 // get available rooms
-+(NSFetchedResultsController *)getAvailableRoomsFor:(NSDate *)startDate through:(NSDate *)endDate;
++(NSFetchedResultsController *)getAvailableRoomsFor:(NSDate *)startDate through:(NSDate *)endDate forFRC:(NSFetchedResultsController *)fetchedResultsController;
 
 // book a reservation
 +(BOOL)bookAReservationFor:(NSDate *)startDate through:(NSDate *)endDate atHotel:(Hotel *)hotel inRoom:(Room *)room withFirstName:(NSString *)firstName andLastName:(NSString *)lastName atEmail:(NSString *)email;
