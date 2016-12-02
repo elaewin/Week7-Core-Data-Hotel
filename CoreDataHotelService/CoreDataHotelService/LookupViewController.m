@@ -29,7 +29,6 @@
 @property(strong, nonatomic)UITableView *tableView;
 @property(strong, nonatomic)UISearchBar *searchBar;
 
-
 @end
 
 @implementation LookupViewController
@@ -108,7 +107,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-//    self.tableView.estimatedRowHeight = 150;
+    self.tableView.estimatedRowHeight = 200;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
@@ -170,26 +169,37 @@
     
     ReservationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-//    if (!cell) {
-//        cell = [[ReservationTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-//    }
+    if (!cell) {
+        cell = [[ReservationTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
     
     Reservation *reservation = [self.reservations objectAtIndexPath:indexPath];
     
     cell.reservation = reservation;
-    
-//    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    cell.textLabel.numberOfLines = 0;
-//    cell.textLabel.font = [UIFont systemFontOfSize:17];
-    
+        
     return cell;
 }
 
 #pragma mark - TableView Delegate Methods
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
+    ReservationTableViewCell *cell = [[ReservationTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    
+    Reservation *reservation = [self.reservations objectAtIndexPath:indexPath];
+    
+    cell.reservation = reservation;
+    
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
+    
+    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    
+    height += 1;
+    
+    return height;
 }
+
+
 
 #pragma mark - Search Bar Delegate Methods
 
