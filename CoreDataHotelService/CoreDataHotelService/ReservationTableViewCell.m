@@ -47,10 +47,10 @@
     
     self.hotelLabel.text = [NSString stringWithFormat:@"Reservation At: %@ - Located in %@", self.reservation.room.hotel.name, self.reservation.room.hotel.location];
     
-    self.guestLabel.text = [NSString stringWithFormat:@"Booked by: %@ %@", self.reservation.guest.firstName, self.reservation.guest.lastName];
-    
     self.datesLabel.text = [NSString stringWithFormat:@"Begins: %@\nEnds: %@",
                             self.reservation.startDate, self.reservation.endDate];
+    
+    self.guestLabel.text = [NSString stringWithFormat:@"Booked by: %@ %@", self.reservation.guest.firstName, self.reservation.guest.lastName];
     
     self.roomLabel.text = [NSString stringWithFormat:@"Room: %i (%i beds)\nCost Per Night: $%.2f",
                             self.reservation.room.roomNumber,
@@ -84,7 +84,7 @@
     
     [AutoLayout createConstraintsWithVFLFor:views
                       withMetricsDictionary:nil
-                                 withFormat:@"V:|-[hotelLabel]-16-[datesLabel]-16-[guestLabel]-16-[roomLabel]-|"];
+                                 withFormat:@"V:|-[hotelLabel]-[datesLabel]-[guestLabel]-[roomLabel]-|"];
     
     [AutoLayout createConstraintsWithVFLFor:views withMetricsDictionary:nil withFormat:@"H:|-[hotelLabel]-|"];
     [AutoLayout createConstraintsWithVFLFor:views withMetricsDictionary:nil withFormat:@"H:|-[datesLabel]-|"];

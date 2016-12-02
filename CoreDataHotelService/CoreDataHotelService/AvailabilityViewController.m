@@ -10,7 +10,6 @@
 #import "BookViewController.h"
 #import "AppDelegate.h"
 #import "AutoLayout.h"
-#import "ReservationService.h"
 #import "Reservation+CoreDataClass.h"
 #import "Room+CoreDataClass.h"
 #import "Hotel+CoreDataClass.h"
@@ -30,26 +29,62 @@
     
     // this is how you do lazy properties in Obj-C.
     if (!_availableRooms) {
-        
-        [ReservationService getAvailableRoomsFor:self.startDate through:self.endDate forFRC:_availableRooms];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
     
-//        if (self.availableRooms.sections.count == 0) {
-//            UIAlertController *alertController = [UIAlertController
-//                                                  alertControllerWithTitle:@"Sorry"
-//                                                  message:@"No rooms are available for the dates you have selected."
-//                                                  preferredStyle:UIAlertControllerStyleAlert];
-//            
-//            UIAlertAction *selectNewAction = [UIAlertAction actionWithTitle:@"Pick New Dates" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }];
-//            
-//            [alertController addAction:selectNewAction];
-//            
-//            [self presentViewController:alertController animated:YES completion:nil];
-//            
-//            return nil;
-//        }
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
+        
+        // Have to get all of the rooms with reservations FIRST.
+        request.predicate = [NSPredicate predicateWithFormat:@"%@ <= endDate AND %@ >= startDate", self.startDate, self.endDate];
+        
+        NSError *requestError;
+        NSArray *results = [context executeFetchRequest:request error:&requestError];
+        if (requestError) {
+            NSLog(@"Error with reservation fetch request.");
+            return nil;
+        }
+        
+        // This is the array of rooms WITH reservations during the requested dates, so these rooms are unavailable!
+        NSMutableArray *unavailableRooms = [[NSMutableArray alloc]init];
+        for (Reservation *reservation in results) {
+            [unavailableRooms addObject:reservation.room];
+        }
+        NSLog(@"unavailable rooms: %lu", (unsigned long)unavailableRooms.count);
+        
+        // Now get all of the rooms that are not already reserved.
+        NSFetchRequest *roomRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
+        roomRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
+        
+        // sort rooms by hotel, then sort by room number.
+        roomRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"hotel.name" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"roomNumber" ascending:YES]];
+        
+        NSError *roomRequestError;
+
+        _availableRooms = [[NSFetchedResultsController alloc]initWithFetchRequest:roomRequest managedObjectContext:context sectionNameKeyPath:@"hotel.name" cacheName:nil];
+        
+        [_availableRooms performFetch:&roomRequestError];
+        
+        if (roomRequestError) {
+            NSLog(@"There was an error requesting available rooms.");
+        }
+    
+        if (self.availableRooms.sections.count == 0) {
+            UIAlertController *alertController = [UIAlertController
+                                                  alertControllerWithTitle:@"Sorry"
+                                                  message:@"No rooms are available for the dates you have selected."
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *selectNewAction = [UIAlertAction actionWithTitle:@"Pick New Dates" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+            [alertController addAction:selectNewAction];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+            return nil;
+        }
     }
 
     return _availableRooms;
