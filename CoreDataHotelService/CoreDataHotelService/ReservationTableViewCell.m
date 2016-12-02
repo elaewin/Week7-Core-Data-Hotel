@@ -71,7 +71,7 @@
     
     self.hotelLabel.text = [NSString stringWithFormat:@"Reservation At: %@ - Located in %@", self.reservation.room.hotel.name, self.reservation.room.hotel.location];
     
-    self.datesLabel.text = [NSString stringWithFormat:@"Begins: %@ - Ends: %@",
+    self.datesLabel.text = [NSString stringWithFormat:@"Begins: %@\nEnds: %@",
                             [self getReadableDatefor:self.reservation.startDate withFormat:NSDateFormatterMediumStyle],
                             [self getReadableDatefor:self.reservation.endDate withFormat:NSDateFormatterMediumStyle]];
     
