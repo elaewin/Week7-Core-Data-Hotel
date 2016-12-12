@@ -22,6 +22,8 @@
 		554AF1941DECEEF000AC6899 /* HotelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554AF1931DECEEF000AC6899 /* HotelsViewController.m */; };
 		554AF1971DED0C5B00AC6899 /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554AF1961DED0C5B00AC6899 /* RoomsViewController.m */; };
 		554AF19A1DEDF72700AC6899 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554AF1991DEDF72700AC6899 /* DatePickerViewController.m */; };
+		55CCE5491DFF662900A3B61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55CCE5481DFF662900A3B61C /* Main.storyboard */; };
+		55CCE54F1DFF66DE00A3B61C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CCE54E1DFF66DE00A3B61C /* MenuViewController.m */; };
 		55E8E1611DEE114B0079B126 /* AvailabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E8E1601DEE114B0079B126 /* AvailabilityViewController.m */; };
 		55E8E1641DEE1D390079B126 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E8E1631DEE1D390079B126 /* BookViewController.m */; };
 		55E8E1671DEE3D280079B126 /* UIViewController+AutoLayoutConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E8E1661DEE3D280079B126 /* UIViewController+AutoLayoutConstants.m */; };
@@ -72,6 +74,9 @@
 		554AF1961DED0C5B00AC6899 /* RoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomsViewController.m; sourceTree = "<group>"; };
 		554AF1981DEDF72700AC6899 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
 		554AF1991DEDF72700AC6899 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
+		55CCE5481DFF662900A3B61C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		55CCE54D1DFF66DE00A3B61C /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		55CCE54E1DFF66DE00A3B61C /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		55E8E15F1DEE114B0079B126 /* AvailabilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailabilityViewController.h; sourceTree = "<group>"; };
 		55E8E1601DEE114B0079B126 /* AvailabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailabilityViewController.m; sourceTree = "<group>"; };
 		55E8E1621DEE1D390079B126 /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
@@ -168,6 +173,7 @@
 		554AF1861DECA2CF00AC6899 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				55CCE5481DFF662900A3B61C /* Main.storyboard */,
 				554AF1871DECA30300AC6899 /* AutoLayout.h */,
 				554AF1881DECA30300AC6899 /* AutoLayout.m */,
 			);
@@ -185,6 +191,8 @@
 		554AF18B1DECA31F00AC6899 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				55CCE54D1DFF66DE00A3B61C /* MenuViewController.h */,
+				55CCE54E1DFF66DE00A3B61C /* MenuViewController.m */,
 				55E8E1821DEFF2B20079B126 /* ReservationService.h */,
 				55E8E1831DEFF2B20079B126 /* ReservationService.m */,
 				55E8E15F1DEE114B0079B126 /* AvailabilityViewController.h */,
@@ -332,6 +340,7 @@
 				554AF17F1DEC9D8800AC6899 /* LaunchScreen.storyboard in Resources */,
 				554AF1911DECD97A00AC6899 /* room.png in Resources */,
 				554AF18F1DECD97A00AC6899 /* hotel.png in Resources */,
+				55CCE5491DFF662900A3B61C /* Main.storyboard in Resources */,
 				554AF1901DECD97A00AC6899 /* hotels.json in Resources */,
 				554AF17C1DEC9D8800AC6899 /* Assets.xcassets in Resources */,
 			);
@@ -448,6 +457,7 @@
 				554AF1741DEC9D8800AC6899 /* ViewController.m in Sources */,
 				554AF1711DEC9D8800AC6899 /* AppDelegate.m in Sources */,
 				554AF16E1DEC9D8800AC6899 /* main.m in Sources */,
+				55CCE54F1DFF66DE00A3B61C /* MenuViewController.m in Sources */,
 				55E8E1611DEE114B0079B126 /* AvailabilityViewController.m in Sources */,
 				55E8E1641DEE1D390079B126 /* BookViewController.m in Sources */,
 				55E8E17E1DEF98210079B126 /* LookupViewController.m in Sources */,

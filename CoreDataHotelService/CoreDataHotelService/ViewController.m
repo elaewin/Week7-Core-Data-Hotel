@@ -65,7 +65,6 @@
     [bookButton addTarget:self action:@selector(bookButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
 
     [lookupButton addTarget:self action:@selector(lookupButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
-
 }
 
 -(void)browseButtonSelected:(UIButton *)sender {
@@ -75,7 +74,6 @@
     [self.navigationController pushViewController:hotelsVC animated:YES];
     
     NSLog(@"Browse button pressed.");
-    
 }
 
 -(void)bookButtonSelected:(UIButton *)sender {
